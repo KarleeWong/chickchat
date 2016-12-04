@@ -32,10 +32,23 @@ export class Chat extends React.Component {
 
 function renderMessage (message) {
     return (
-        <li key={message.messageId}>
+        <li style={{
+          display: "flex",
+          fontSize: "18px",
+          fontFamily: "Monospace",
+          alignItems: "center",
+          padding: "5px",
+          wordBreak: "break-all"
+        }} key={message.messageId}>
 
             {/* Exercise 3: Add message author */}
-          <img src = {message.author.picture} height ="32px"/>
+          <img style= {{
+          borderRadius: "50%",
+          border: "5px solid #f0ffff",
+          padding: "5px",
+          display: "inline-block"
+
+          }} src = {message.author.picture} height ="64px"/>
             {message.author.name + ": "}
 
 
@@ -46,8 +59,9 @@ function renderMessage (message) {
 
 const ulStyle = {
     overflowY: "scroll",
-
+    listStyle: "none"
     /* Exercise 4: Add your own styles */
+
 
 }
 
@@ -72,7 +86,8 @@ function getMessageBody (message) {
     if (message.data) {
         return <img src={message.data} style={imageStyle} />
     } else {
-        return message.text
+        return <span> {message.text} </span>
+
     }
 }
 
@@ -81,8 +96,7 @@ Chat.propTypes = {
 }
 
 function mapStateToProps (state) {
-    return {
-        messages: state.messages
+    return { messages: state.messages
     }
 }
 
